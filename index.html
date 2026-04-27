@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Elvis Kiprono | IT Specialist · Developer · Educator</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #080c12;
+  --surface: #0d1420;
+  --border: rgba(255,255,255,0.07);
+  --accent: #00d4ff;
+  --accent2: #7c4dff;
+  --accent3: #00ff9d;
+  --text: #e8edf5;
+  --muted: #6b7a99;
+  --card: rgba(255,255,255,0.04);
+}
+
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+.cursor {
+  width: 12px; height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease, opacity 0.15s;
+  transform: translate(-50%, -50%);
+}
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(0,212,255,0.4);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.35s ease, width 0.2s, height 0.2s;
+  transform: translate(-50%, -50%);
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(8,12,18,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+.nav-logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.nav-cta {
+  background: var(--accent);
+  color: var(--bg) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 600 !important;
+  color: #080c12 !important;
+}
+
+/* ── CANVAS ── */
+#bg-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 48px;
+  padding-top: 80px;
+}
+
+.hero-content { max-width: 720px; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.2);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+
+.hero h1 .line1 { display: block; color: var(--text); }
+.hero h1 .line2 {
+  display: block;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-desc {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 540px;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 48px;
+}
+
+.tag {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: var(--card);
+  letter-spacing: 0.3px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,212,255,0.3);
+}
+
+.btn-outline {
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  background: rgba(0,212,255,0.05);
+}
+
+.hero-stats {
+  position: absolute;
+  right: 48px;
+  bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.stat {
+  text-align: right;
+}
+
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+}
+
+.stat-num span { color: var(--accent); }
+.stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+
+/* ── SCROLL INDICATOR ── */
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.scroll-line {
+  width: 40px;
+  height: 1px;
+  background: var(--muted);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0%,100% { width: 40px; opacity: 1; }
+  50% { width: 70px; opacity: 0.4; }
+}
+
+/* ── SECTIONS ── */
+section {
+  position: relative;
+  z-index: 1;
+  padding: 100px 48px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  margin-bottom: 60px;
+}
+
+/* ── ABOUT ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-text p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.about-text p strong { color: var(--text); font-weight: 500; }
+
+.about-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.about-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.about-card:hover {
+  border-color: rgba(0,212,255,0.3);
+  transform: translateY(-4px);
+}
+
+.about-card-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.about-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.about-card-text {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ── SKILLS ── */
+#skills { background: var(--surface); }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.skill-group {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.skill-group:hover {
+  border-color: rgba(0,212,255,0.25);
+  transform: translateY(-6px);
+}
+
+.skill-group-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skill-list li {
+  font-size: 13px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skill-list li::before {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ── EXPERIENCE ── */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 56px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -36px;
+  top: 8px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 4px rgba(0,212,255,0.15);
+}
+
+.timeline-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.timeline-date {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.timeline-badge {
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.badge-teaching { background: rgba(0,255,157,0.1); color: var(--accent3); border: 1px solid rgba(0,255,157,0.2); }
+.badge-it { background: rgba(0,212,255,0.1); color: var(--accent); border: 1px solid rgba(0,212,255,0.2); }
+.badge-admin { background: rgba(124,77,255,0.1); color: var(--accent2); border: 1px solid rgba(124,77,255,0.2); }
+
+.timeline-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.timeline-org {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.timeline-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.timeline-points li {
+  font-size: 14px;
+  color: var(--muted);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.timeline-points li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 12px;
+}
+
+/* ── PROJECTS ── */
+#projects { background: var(--surface); }
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.project-card:hover {
+  border-color: rgba(0,212,255,0.3);
+  transform: translateY(-6px);
+}
+
+.project-card:hover::before { opacity: 1; }
+
+.project-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.04);
+  position: absolute;
+  top: 16px; right: 20px;
+  line-height: 1;
+}
+
+.project-icon { font-size: 32px; margin-bottom: 20px; }
+
+.project-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.project-desc {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tech-tag {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(0,212,255,0.08);
+  color: var(--accent);
+  border: 1px solid rgba(0,212,255,0.15);
+  letter-spacing: 0.5px;
+}
+
+/* ── CERTS ── */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.cert-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  background: var(--card);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.cert-card:hover {
+  border-color: rgba(0,212,255,0.3);
+  transform: translateY(-3px);
+}
+
+.cert-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.cert-icon.google { background: rgba(0,212,255,0.1); }
+.cert-icon.bridge { background: rgba(0,255,157,0.1); }
+.cert-icon.ajira { background: rgba(124,77,255,0.1); }
+.cert-icon.tsc { background: rgba(255,180,0,0.1); }
+.cert-icon.tveta { background: rgba(255,80,80,0.1); }
+
+.cert-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.cert-org { font-size: 11.5px; color: var(--muted); }
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--surface);
+  text-align: center;
+}
+
+.contact-inner { max-width: 640px; margin: 0 auto; }
+
+.contact-desc {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 48px;
+  font-weight: 300;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.contact-link:hover {
+  border-color: var(--accent);
+  background: rgba(0,212,255,0.06);
+  transform: translateY(-3px);
+}
+
+.contact-link svg {
+  width: 18px; height: 18px;
+  fill: var(--accent);
+}
+
+/* ── FOOTER ── */
+footer {
+  position: relative;
+  z-index: 1;
+  padding: 24px 48px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ── FADE IN ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 0 24px; padding-top: 80px; }
+  .hero-stats { display: none; }
+  section { padding: 70px 24px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .certs-grid { grid-template-columns: 1fr 1fr; }
+  footer { flex-direction: column; gap: 8px; text-align: center; }
+  .scroll-indicator { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- CANVAS -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">EK<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Available for Remote Work</div>
+    <h1>
+      <span class="line1">Elvis</span>
+      <span class="line2">Kiprono.</span>
+    </h1>
+    <p class="hero-desc">
+      IT Support Specialist · Web Developer · Educator based in Nairobi, Kenya.
+      I build real tools, solve real problems, and teach real skills.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">🔧 IT Support</span>
+      <span class="tag">⚡ Firebase & JS</span>
+      <span class="tag">🤖 AI Tools</span>
+      <span class="tag">🎓 TSC Teacher</span>
+      <span class="tag">🌍 Remote Ready</span>
+      <span class="tag">📍 Nairobi, Kenya</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Get In Touch
+      </a>
+      <a href="Elvis_Kiprono_LinkedIn_Resume.pdf" class="btn-outline" download>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Download CV
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">3<span>+</span></div>
+      <div class="stat-label">Years Teaching</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5<span>+</span></div>
+      <div class="stat-label">Live Projects</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100<span>+</span></div>
+      <div class="stat-label">Students Trained</div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label fade-up">Who I Am</div>
+  <h2 class="section-title fade-up">A builder. A teacher.<br>A problem solver.</h2>
+
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <p>
+        I'm <strong>Elvis Kiprono</strong>, a Google-certified IT Support Specialist, self-taught web developer, and TSC-registered teacher based in <strong>Nairobi, Kenya</strong>. I combine technical depth with the ability to explain things clearly — a rare combination that makes me useful in both technical and training environments.
+      </p>
+      <p>
+        My background spans <strong>institutional leadership</strong> as a Principal, delivering <strong>digital literacy education</strong> to 100+ students, building live <strong>fintech web applications</strong>, and working with the <strong>British Council</strong> on international assessment administration.
+      </p>
+      <p>
+        I thrive in remote environments, communicate fluently in English, and am fully available for full-time opportunities worldwide — including open to relocation.
+      </p>
+    </div>
+
+    <div class="about-cards fade-up">
+      <div class="about-card">
+        <div class="about-card-icon">🎓</div>
+        <div class="about-card-title">TSC Registered Teacher</div>
+        <div class="about-card-text">B.Ed (Geography & Kiswahili) · MKU · 2nd Class Honours Upper. TSC No: 1071786</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🔧</div>
+        <div class="about-card-title">Google IT Certified</div>
+        <div class="about-card-text">Google IT Support Professional Certificate · Coursera 2023</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">⚡</div>
+        <div class="about-card-title">Web Developer</div>
+        <div class="about-card-text">Firebase · JavaScript · REST APIs · Paystack · GitHub Pages</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🌍</div>
+        <div class="about-card-title">Remote Ready</div>
+        <div class="about-card-text">Available immediately · Open to relocation · Payoneer enabled</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label fade-up">What I Know</div>
+  <h2 class="section-title fade-up">Skills &<br>Competencies</h2>
+
+  <div class="skills-grid">
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">IT Support</div>
+      <ul class="skill-list">
+        <li>Remote Desktop Support</li>
+        <li>IT Helpdesk & Ticketing</li>
+        <li>Software Troubleshooting</li>
+        <li>SaaS Tools Management</li>
+        <li>Google Workspace Admin</li>
+        <li>Microsoft 365</li>
+        <li>User Onboarding</li>
+        <li>Process Documentation</li>
+      </ul>
+    </div>
+
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Development</div>
+      <ul class="skill-list">
+        <li>HTML, CSS & JavaScript</li>
+        <li>Firebase & Firestore</li>
+        <li>REST API Integration</li>
+        <li>Paystack Integration</li>
+        <li>Telegram Bot API</li>
+        <li>WebSocket APIs</li>
+        <li>GitHub & GitHub Pages</li>
+        <li>EmailJS</li>
+      </ul>
+    </div>
+
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">AI & Tools</div>
+      <ul class="skill-list">
+        <li>Prompt Engineering</li>
+        <li>Groq LLM API</li>
+        <li>ChatGPT & Claude AI</li>
+        <li>AI Workflow Automation</li>
+        <li>CRM Tools</li>
+        <li>Canva</li>
+        <li>Zoom & Google Meet</li>
+        <li>Data Entry & Reporting</li>
+      </ul>
+    </div>
+
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Teaching</div>
+      <ul class="skill-list">
+        <li>Geography (Secondary)</li>
+        <li>Kiswahili (Secondary)</li>
+        <li>Digital Literacy & IT</li>
+        <li>Curriculum Development</li>
+        <li>Student Assessment</li>
+        <li>Classroom Management</li>
+        <li>School Leadership</li>
+        <li>TVETA Compliance</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label fade-up">Where I've Been</div>
+  <h2 class="section-title fade-up">Experience</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <span class="timeline-date">Feb 2025 – Mar 2026</span>
+        <span class="timeline-badge badge-it">IT & Admin</span>
+      </div>
+      <div class="timeline-title">Examination Invigilator</div>
+      <div class="timeline-org">British Council · Freelance Contract</div>
+      <ul class="timeline-points">
+        <li>Administered international examinations under strict British Council digital protocols</li>
+        <li>Maintained zero-irregularity compliance and accurate digital incident documentation</li>
+        <li>Operated within a professional international assessment environment across multiple sessions</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <span class="timeline-date">Jan – Dec 2025</span>
+        <span class="timeline-badge badge-admin">Leadership</span>
+      </div>
+      <div class="timeline-title">Principal & IT Operations Lead</div>
+      <div class="timeline-org">Mountsview Vocational & Technical Training Institute</div>
+      <ul class="timeline-points">
+        <li>Managed all digital systems, databases, and administrative software institution-wide</li>
+        <li>Provided frontline IT support and trained non-technical staff on software tools</li>
+        <li>Taught TVETA units: Digital Literacy, Communication Skills & Employability Skills</li>
+        <li>Reduced manual admin workload by 40% through digital process improvements</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <span class="timeline-date">Jan – Dec 2024</span>
+        <span class="timeline-badge badge-teaching">Teaching</span>
+      </div>
+      <div class="timeline-title">Digital Literacy Trainer</div>
+      <div class="timeline-org">Hewitt and Bernet International School</div>
+      <ul class="timeline-points">
+        <li>Delivered Digital Literacy, Communication Skills & Entrepreneurship to 100+ students</li>
+        <li>Designed lesson plans, assessments, and training materials aligned to curriculum objectives</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <span class="timeline-date">May – Dec 2023</span>
+        <span class="timeline-badge badge-teaching">Teaching</span>
+      </div>
+      <div class="timeline-title">Teacher — Geography & Kiswahili</div>
+      <div class="timeline-org">St. Mark's High School · TSC Registered</div>
+      <ul class="timeline-points">
+        <li>Delivered Geography and Kiswahili under the Kenya CBC curriculum framework</li>
+        <li>Maintained academic records, assessed performance, and mentored students personally</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label fade-up">What I've Built</div>
+  <h2 class="section-title fade-up">Projects</h2>
+
+  <div class="projects-grid">
+    <div class="project-card fade-up">
+      <div class="project-num">01</div>
+      <div class="project-icon">🤖</div>
+      <div class="project-title">SwiftCV</div>
+      <p class="project-desc">AI-powered CV and cover letter builder targeting the Kenyan job market. Integrates Groq's LLaMA model for document generation and Paystack for KES payments.</p>
+      <div class="project-tech">
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">Groq AI</span>
+        <span class="tech-tag">Paystack</span>
+        <span class="tech-tag">GitHub Pages</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-num">02</div>
+      <div class="project-icon">📊</div>
+      <div class="project-title">NEXUS Trading Bot</div>
+      <p class="project-desc">Real-time paper trading bot connected to live Binance market data via WebSocket. Multi-indicator strategy with RSI, MACD, Bollinger Bands and ATR risk management.</p>
+      <div class="project-tech">
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">Binance API</span>
+        <span class="tech-tag">WebSocket</span>
+        <span class="tech-tag">RSI/MACD</span>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-num">03</div>
+      <div class="project-icon">💳</div>
+      <div class="project-title">FIFO Payout Engine</div>
+      <p class="project-desc">Full payout engine with Firebase Firestore and Google Auth, Paystack deposits and withdrawals, and FIFO-based credit logic across investment tiers.</p>
+      <div class="project-tech">
+        <span class="tech-tag">Firebase</span>
+        <span class="tech-tag">Firestore</span>
+        <span class="tech-tag">Paystack</span>
+        <span class="tech-tag">Google Auth</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section id="certs">
+  <div class="section-label fade-up">Credentials</div>
+  <h2 class="section-title fade-up">Certifications &<br>Registrations</h2>
+
+  <div class="certs-grid">
+    <div class="cert-card fade-up">
+      <div class="cert-icon google">🎓</div>
+      <div>
+        <div class="cert-name">Google IT Support Professional Certificate</div>
+        <div class="cert-org">Coursera / Google · 2023</div>
+      </div>
+    </div>
+    <div class="cert-card fade-up">
+      <div class="cert-icon bridge">🌉</div>
+      <div>
+        <div class="cert-name">Bridge International Teacher Training</div>
+        <div class="cert-org">Certificate of Completion · April 2026</div>
+      </div>
+    </div>
+    <div class="cert-card fade-up">
+      <div class="cert-icon ajira">💻</div>
+      <div>
+        <div class="cert-name">Digital Literacy & Data Entry</div>
+        <div class="cert-org">Ajira Digital · 2023</div>
+      </div>
+    </div>
+    <div class="cert-card fade-up">
+      <div class="cert-icon tsc">📋</div>
+      <div>
+        <div class="cert-name">TSC Registered Teacher</div>
+        <div class="cert-org">Registration No: 1071786</div>
+      </div>
+    </div>
+    <div class="cert-card fade-up">
+      <div class="cert-icon tveta">🏛️</div>
+      <div>
+        <div class="cert-name">TVETA Licensed Trainer</div>
+        <div class="cert-org">License No: TVETA/T246743</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label fade-up">Let's Connect</div>
+    <h2 class="section-title fade-up">Available for<br>opportunities worldwide.</h2>
+    <p class="contact-desc fade-up">
+      Whether it's IT support, web development, teaching, or something in between — I'm ready. Remote-first, immediately available, open to relocation.
+    </p>
+
+    <div class="contact-links fade-up">
+      <a href="mailto:elviskiprono.work@gmail.com" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        elviskiprono.work@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/elvis-kip-rono" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        linkedin.com/in/elvis-kip-rono
+      </a>
+      <a href="tel:+254715365500" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +254 715 365 500
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2026 Elvis Kiprono · Nairobi, Kenya</div>
+  <div>Built with purpose. Available worldwide.</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ── CURSOR ──
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+
+function animateCursor() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.transform = 'translate(-50%, -50%) scale(2)';
+    ring.style.width = '54px'; ring.style.height = '54px';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+    ring.style.width = '36px'; ring.style.height = '36px';
+  });
+});
+
+// ── THREE.JS PARTICLE FIELD ──
+const canvas = document.getElementById('bg-canvas');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.z = 30;
+
+// Particles
+const count = 2000;
+const positions = new Float32Array(count * 3);
+const colors = new Float32Array(count * 3);
+
+for (let i = 0; i < count; i++) {
+  positions[i * 3]     = (Math.random() - 0.5) * 120;
+  positions[i * 3 + 1] = (Math.random() - 0.5) * 120;
+  positions[i * 3 + 2] = (Math.random() - 0.5) * 120;
+
+  const t = Math.random();
+  if (t < 0.5) {
+    colors[i * 3] = 0; colors[i * 3 + 1] = 0.83; colors[i * 3 + 2] = 1;
+  } else if (t < 0.8) {
+    colors[i * 3] = 0.49; colors[i * 3 + 1] = 0.3; colors[i * 3 + 2] = 1;
+  } else {
+    colors[i * 3] = 0; colors[i * 3 + 1] = 1; colors[i * 3 + 2] = 0.62;
+  }
+}
+
+const geo = new THREE.BufferGeometry();
+geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+const mat = new THREE.PointsMaterial({
+  size: 0.15,
+  vertexColors: true,
+  transparent: true,
+  opacity: 0.7,
+  sizeAttenuation: true
+});
+
+const particles = new THREE.Points(geo, mat);
+scene.add(particles);
+
+// Mouse parallax
+let mouseX = 0, mouseY = 0;
+document.addEventListener('mousemove', e => {
+  mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+  mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+});
+
+// Animate
+function animate() {
+  requestAnimationFrame(animate);
+  const t = Date.now() * 0.0003;
+  particles.rotation.y = t * 0.15 + mouseX * 0.08;
+  particles.rotation.x = t * 0.08 + mouseY * 0.05;
+  renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// ── SCROLL ANIMATIONS ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, 100);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up, .timeline-item').forEach(el => {
+  observer.observe(el);
+});
+
+// Staggered fade-up
+document.querySelectorAll('.fade-up').forEach((el, i) => {
+  el.style.transitionDelay = (i % 4) * 0.1 + 's';
+});
+</script>
+</body>
+</html>
